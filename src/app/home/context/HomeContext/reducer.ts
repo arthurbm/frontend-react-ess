@@ -12,6 +12,11 @@ const homeStateReducer = (state: HomeState, action: HomeStateAction) => {
         ...state,
         getTestsRequestStatus: action.payload,
       };
+    case "CHANGE_DELETE_TEST_REQUEST_STATUS":
+      return {
+        ...state,
+        deleteTestRequestStatus: action.payload,
+      };
 
     default:
       return state;

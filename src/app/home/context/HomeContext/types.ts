@@ -9,6 +9,10 @@ export type HomeStateAction =
   | {
       type: "CHANGE_GET_TESTS_REQUEST_STATUS";
       payload: RequestStatus<TestModel[]>;
+    }
+  | {
+      type: "CHANGE_DELETE_TEST_REQUEST_STATUS";
+      payload: RequestStatus<any>;
     };
 
 export interface HomeState {

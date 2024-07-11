@@ -34,12 +34,9 @@ export const useTestById = (id: string) => {
   });
 };
 
-export const useUpdateTestByIdMutation = (
-  id: string,
-  testForm: TestFormType
-) => {
+export const useUpdateTestByIdMutation = (id: string) => {
   return useMutation({
-    mutationFn: () => updateTest(id, testForm),
+    mutationFn: (data: TestFormType) => updateTest(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["test", { id }],

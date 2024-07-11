@@ -7,12 +7,19 @@ import {
   Spinner,
   Alert,
   AlertIcon,
+  Button,
+  HStack,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { useTests } from "../../hooks";
+import { useTests, useDeleteTestMutation } from "../../hooks";
 
 const ListTests = () => {
   const { data: tests, error, isLoading } = useTests();
+  const { mutate: deleteTest } = useDeleteTestMutation();
+
+  const handleDelete = (id: string) => {
+    deleteTest(id);
+  };
 
   return (
     <Box
@@ -41,11 +48,16 @@ const ListTests = () => {
             borderRadius="md"
             width="100%"
           >
-            <ChakraLink as={Link} to={`/test/${test.id}`}>
-              <Text fontSize="xl" data-cy={`test-item-${test.name}`}>
-                {test.name}
-              </Text>
-            </ChakraLink>
+            <HStack justify="space-between">
+              <ChakraLink as={Link} to={`/test/${test.id}`}>
+                <Text fontSize="xl" data-cy={`test-item-${test.name}`}>
+                  {test.name}
+                </Text>
+              </ChakraLink>
+              <Button colorScheme="red" onClick={() => handleDelete(test.id)}>
+                Delete
+              </Button>
+            </HStack>
           </Box>
         ))}
       </VStack>

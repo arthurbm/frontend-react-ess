@@ -3,9 +3,9 @@ import { BaseApiResponseType } from "../../../shared/types/base-api-response";
 import { TestFormType } from "../forms/TestForm";
 import TestModel from "../models/TestModel";
 
-async function delay(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+// async function delay(ms: number) {
+//   return new Promise((resolve) => setTimeout(resolve, ms));
+// }
 
 export async function createTest(
   testForm: TestFormType
@@ -14,8 +14,6 @@ export async function createTest(
 }
 
 export async function getTests(): Promise<BaseApiResponseType<TestModel[]>> {
-  await delay(3000);
-
   return (await apiService.get("/tests")).data;
 }
 
